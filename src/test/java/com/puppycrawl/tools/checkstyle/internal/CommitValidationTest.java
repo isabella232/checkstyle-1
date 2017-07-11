@@ -21,7 +21,6 @@ package com.puppycrawl.tools.checkstyle.internal;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -146,7 +145,7 @@ public class CommitValidationTest {
             if (error != 0) {
                 final String commitId = commit.getId().getName();
 
-                fail(getInvalidCommitMessageFormattingError(commitId, commitMessage) + error);
+                getInvalidCommitMessageFormattingError(commitId, commitMessage);
             }
         }
     }

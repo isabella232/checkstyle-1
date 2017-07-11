@@ -22,7 +22,7 @@
 
   <groupId>com.puppycrawl.tools</groupId>
   <artifactId>checkstyle</artifactId>
-  <version>8.1-SNAPSHOT</version>
+  <version>8.1-atlassian-rc1</version>
   <packaging>jar</packaging>
 
   <name>checkstyle</name>
@@ -173,9 +173,9 @@
   </prerequisites>
 
   <scm>
-    <connection>scm:git:git@github.com:checkstyle/checkstyle.git</connection>
-    <developerConnection>scm:git:git@github.com:checkstyle/checkstyle.git</developerConnection>
-    <url>https://github.com/checkstyle/checkstyle</url>
+    <connection>scm:git:git@github.com:atlassian/checkstyle.git</connection>
+    <developerConnection>scm:git:git@github.com:atlassian/checkstyle.git</developerConnection>
+    <url>https://github.com/atlassian/checkstyle</url>
   </scm>
   <issueManagement>
     <system>GitHub Issues</system>
@@ -186,11 +186,14 @@
     <url>https://travis-ci.org/checkstyle/checkstyle</url>
   </ciManagement>
   <distributionManagement>
-    <site>
-      <id>sourceforge-new-site</id>
-      <name>New Site</name>
-      <url>scp://shell.sourceforge.net/home/project-web/checkstyle/htdocs/new-site</url>
-    </site>
+    <repository>
+      <id>atlassian-3rdparty</id>
+      <url>https://maven.atlassian.com/3rdparty</url>
+    </repository>
+    <snapshotRepository>
+      <id>atlassian-3rdparty-snapshot</id>
+      <url>https://maven.atlassian.com/3rdparty-snapshot</url>
+    </snapshotRepository>
   </distributionManagement>
 
   <properties>
@@ -585,6 +588,26 @@
                   <includes>
                     <include>*.dtd</include>
                   </includes>
+                </resource>
+              </resources>
+            </configuration>
+          </execution>
+          <execution>
+            <id>copy-license</id>
+            <phase>process-sources</phase>
+            <goals>
+              <goal>copy-resources</goal>
+            </goals>
+            <configuration>
+              <outputDirectory>${project.build.outputDirectory}/META-INF</outputDirectory>
+              <overwrite>true</overwrite>
+              <resources>
+                <resource>
+                  <directory>${user.dir}</directory>
+                  <includes>
+                    <include>LICENSE</include>
+                  </includes>
+                  <filtering>false</filtering>
                 </resource>
               </resources>
             </configuration>
